@@ -21,6 +21,13 @@ const config: Config = {
             red500: '#EA5555',
             red300: '#FF9898',
         },
+        fontSize: {
+            'heading-xl': ['24px', { fontWeight: 700, lineHeight: 'normal' }],
+            'heading-l': ['18px', { fontWeight: 700, lineHeight: 'normal' }],
+            'heading-m': ['15px', { fontWeight: 700, lineHeight: 'normal' }],
+            'body-l': ['13px', { fontWeight: 500, lineHeight: '23px' }],
+            'body-m': ['12px', { fontWeight: 700, lineHeight: 'normal' }],
+        },
         extend: {},
     },
     plugins: [],
