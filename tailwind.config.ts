@@ -7,6 +7,10 @@ const config: Config = {
         './app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
+        screens: {
+            tablet: '768px',
+            desktop: '1440px',
+        },
         colors: {
             purple300: '#A8A4FF',
             purple500: '#635FC7',
