@@ -1,7 +1,9 @@
+import { NoBoards } from './no-boards';
+
 export default function Boards() {
     return (
-        <main>
-            <div>boards</div>
+        <main className="flex flex-1 flex-col">
+            <NoBoards />
         </main>
     );
 }
