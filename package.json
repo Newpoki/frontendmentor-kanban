@@ -15,7 +15,8 @@
     "next-auth": "^4.24.3",
     "next-themes": "^0.2.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
