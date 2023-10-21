@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-type Props = React.HTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     size?: 'small' | 'medium';
     color?: 'primary' | 'secondary' | 'error';
 };
@@ -16,14 +16,19 @@ const sizes = {
     medium: 'py-4 rounded-3xl text-[15px] leading-none',
 } as const;
 
-export const Button = ({ className, color = 'primary', size = 'small', ...others }: Props) => {
+export const Button = ({
+    className,
+    color = 'primary',
+    size = 'small',
+    ...others
+}: ButtonProps) => {
     const colorClassNames = colors[color];
     const sizesClassNames = sizes[size];
 
     return (
         <button
             className={twMerge(
-                'rounded px-5 font-bold transition-colors',
+                'rounded px-5 font-bold capitalize transition-colors',
                 colorClassNames,
                 sizesClassNames,
                 className
