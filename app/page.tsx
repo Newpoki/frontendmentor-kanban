@@ -1,7 +1,20 @@
 import LogoKanbanFull from '@/public/assets/logo-kanban-full.svg';
 import { SigninGoogleButton } from './signin-google-button';
+import { getServerSession } from 'next-auth';
+import { authConfig } from './api/auth/[...nextauth]/route';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
+const routeProtection = async () => {
+    const session = await getServerSession(authConfig);
+
+    if (session != null) {
+        redirect('/boards');
+    }
+};
+
+export default async function Home() {
+    await routeProtection();
+
     return (
         <main className="flex flex-1 flex-col p-4 tablet:p-10">
             <div className="flex items-center tablet:flex-col tablet:items-center">
