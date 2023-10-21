@@ -1,11 +1,24 @@
 import LogoKanban from '@/public/assets/logo-kanban.svg';
 import VerticalDots from '@/public/assets/vertical-dots.svg';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
+import { authConfig } from '../api/auth/[...nextauth]/route';
 
 type Props = {
     children: React.ReactNode;
 };
 
-export default function BoardsLayout({ children }: Props) {
+const routeProtection = async () => {
+    const session = await getServerSession(authConfig);
+
+    if (session == null) {
+        return redirect('/');
+    }
+};
+
+export default async function BoardsLayout({ children }: Props) {
+    await routeProtection();
+
     return (
         <div className="flex flex-1 flex-col">
             <header className="flex justify-between bg-white px-4 py-5">
