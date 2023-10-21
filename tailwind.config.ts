@@ -25,6 +25,7 @@ const config: Config = {
             grey100: '#F4F7FD',
             red500: '#EA5555',
             red300: '#FF9898',
+            transparent: 'transparent',
         },
         fontSize: {
             'heading-xl': ['24px', { fontWeight: 700, lineHeight: 'normal' }],
@@ -33,7 +34,12 @@ const config: Config = {
             'body-l': ['13px', { fontWeight: 500, lineHeight: '23px' }],
             'body-m': ['12px', { fontWeight: 700, lineHeight: 'normal' }],
         },
-        extend: {},
+        extend: {
+            borderWidth: {
+                DEFAULT: '1px',
+                1: '1px',
+            },
+        },
     },
     plugins: [],
 };
