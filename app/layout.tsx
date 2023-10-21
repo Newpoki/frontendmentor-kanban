@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body
-                className={`${jakarta.className} flex min-h-[100dvh] flex-1 flex-col bg-grey100 text-black`}
+                className={`${jakarta.className} flex min-h-[100dvh] flex-1 flex-col bg-grey100 text-black transition-colors`}
             >
                 <Providers>{children}</Providers>
             </body>
