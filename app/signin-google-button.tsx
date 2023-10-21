@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 
 export const SigninGoogleButton = () => {
     const handleClick = useCallback(() => {
-        signIn('google');
+        signIn('google', { callbackUrl: '/boards', redirect: true });
     }, []);
 
     return (
