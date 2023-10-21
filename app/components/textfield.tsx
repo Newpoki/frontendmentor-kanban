@@ -33,7 +33,7 @@ export const TextField = ({
                     <input
                         {...others}
                         className={twMerge(
-                            'bg-transparent  outline-none placeholder:text-grey500/25',
+                            'bg-transparent  w-full outline-none placeholder:text-grey500/25',
 
                             inputClassName
                         )}
