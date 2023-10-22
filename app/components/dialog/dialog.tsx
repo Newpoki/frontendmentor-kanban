@@ -15,7 +15,7 @@ export const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
             onClose={onClose}
             isDisplayed={isOpen}
         >
-            <div className="flex max-h-[calc(100dvh-32px)] w-[calc(100dvw-32px)] max-w-[480px] flex-col gap-6 rounded-md bg-white p-6">
+            <div className="flex max-h-[calc(100dvh-32px)] w-[calc(100dvw-32px)] max-w-[480px] flex-col rounded-md bg-white">
                 {isOpen && children}
             </div>
         </Backdrop>
