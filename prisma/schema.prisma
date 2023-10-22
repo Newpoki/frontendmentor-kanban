@@ -56,17 +56,17 @@ model VerificationToken {
 model BoardColumn {
     id      String  @id @default(auto()) @map("_id") @db.ObjectId
     name    String  @unique
+    color   String  @unique
     Board   Board?  @relation(fields: [boardId], references: [id])
     boardId String? @db.ObjectId
 }
 
 model Board {
     id      String        @id @default(auto()) @map("_id") @db.ObjectId
-    name    String
+    name    String        @unique
     columns BoardColumn[]
+    slug    String        @unique
 
     userId String @db.ObjectId
     user   User   @relation(fields: [userId], references: [id])
-
-    @@unique([name])
 }

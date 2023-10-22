@@ -1,9 +1,9 @@
 'use client';
 
 import { FieldArrayWithId } from 'react-hook-form';
-import { BoardDialogFormValues } from '../types';
 import { useCallback } from 'react';
 import { ControlledTextField } from '@/app/components/forms/controlled-textfield';
+import { BoardDialogFormValues } from '../boards-utils';
 
 type Props = {
     field: FieldArrayWithId<BoardDialogFormValues, 'columns'>;
@@ -17,13 +17,21 @@ export const BoardDialogFormColumnsField = ({ field, index, onDelete }: Props) =
     }, [index, onDelete]);
 
     return (
-        <ControlledTextField
-            {...field}
-            name={`columns.${index}.name`}
-            key={field.id}
-            label="Board Columns"
-            placeholder="e.g. Todo"
-            onDelete={handleDelete}
-        />
+        <div key={field.id} className="flex flex-col gap-2">
+            <ControlledTextField
+                {...field}
+                name={`columns.${index}.name`}
+                label={index === 0 ? 'Board Columns' : undefined}
+                placeholder="e.g. Todo"
+                onDelete={handleDelete}
+            />
+
+            <ControlledTextField
+                {...field}
+                name={`columns.${index}.color`}
+                className="w-1/2"
+                placeholder="#123456"
+            />
+        </div>
     );
 };

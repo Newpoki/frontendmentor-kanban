@@ -19,7 +19,7 @@ export const BoardDialogForm = () => {
         resolver: zodResolver(boardDialogFormSchema),
         defaultValues: {
             name: '',
-            columns: [{ name: '' }],
+            columns: [{ name: '', color: '' }],
         },
     });
 

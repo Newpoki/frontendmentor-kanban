@@ -1,10 +1,10 @@
 'use client';
 
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { BoardDialogFormValues } from '../types';
 import { Button } from '@/app/components/button';
 import { BoardDialogFormColumnsField } from './board-dialog-form-columns-field';
 import { useCallback } from 'react';
+import { BoardDialogFormValues } from '../boards-utils';
 
 export const BoardDialogFormColumns = () => {
     const { control } = useFormContext<BoardDialogFormValues>();
@@ -12,12 +12,12 @@ export const BoardDialogFormColumns = () => {
     const { fields, remove, append, update } = useFieldArray({ control, name: 'columns' });
 
     const handleAddNewColumn = useCallback(() => {
-        append({ name: '' });
+        append({ name: '', color: '' });
     }, [append]);
 
     const handleDeleteColumn = useCallback(
         (columnIndex: number) => {
-            fields.length === 1 ? update(0, { name: '' }) : remove(columnIndex);
+            fields.length === 1 ? update(0, { name: '', color: '' }) : remove(columnIndex);
         },
         [fields.length, remove, update]
     );

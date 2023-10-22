@@ -31,6 +31,10 @@ const config: Config = {
             'heading-xl': ['24px', { fontWeight: 700, lineHeight: 'normal' }],
             'heading-l': ['18px', { fontWeight: 700, lineHeight: 'normal' }],
             'heading-m': ['15px', { fontWeight: 700, lineHeight: 'normal' }],
+            'heading-s': [
+                '12px',
+                { fontWeight: 700, lineHeight: 'normal', letterSpacing: '2.4px' },
+            ],
             'body-l': ['13px', { fontWeight: 500, lineHeight: '23px' }],
             'body-m': ['12px', { fontWeight: 700, lineHeight: 'normal' }],
         },
