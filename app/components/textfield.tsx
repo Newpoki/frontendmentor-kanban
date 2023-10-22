@@ -34,7 +34,9 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                             )}
                             id={id}
                         />
-                        {error != null && <span className=" text-red500">{error}</span>}
+                        {error != null && (
+                            <span className=" whitespace-nowrap text-red500">{error}</span>
+                        )}
                     </div>
 
                     {onDelete && (

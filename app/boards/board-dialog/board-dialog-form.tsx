@@ -8,10 +8,12 @@ import { FormProvider } from '@/app/components/forms/form-provider';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { BoardDialogFormColumns } from './board-dialog-form-columns';
-import { BoardDialogFormValues } from '../types';
+import { BoardDialogFormValues, boardDialogFormSchema } from '../boards-utils';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export const BoardDialogForm = () => {
     const formContext = useForm<BoardDialogFormValues>({
+        resolver: zodResolver(boardDialogFormSchema),
         defaultValues: {
             name: '',
             columns: [{ name: '' }],
@@ -23,8 +25,12 @@ export const BoardDialogForm = () => {
     }, []);
 
     return (
-        <FormProvider onSubmit={handleSubmit} formContext={formContext}>
-            <DialogContent className="mb-6">
+        <FormProvider
+            className="flex flex-1 flex-col overflow-y-hidden"
+            onSubmit={handleSubmit}
+            formContext={formContext}
+        >
+            <DialogContent>
                 <ControlledTextField
                     name="name"
                     className="mb-6"
