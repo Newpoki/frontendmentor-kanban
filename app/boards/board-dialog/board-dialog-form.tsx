@@ -10,8 +10,11 @@ import { useForm } from 'react-hook-form';
 import { BoardDialogFormColumns } from './board-dialog-form-columns';
 import { BoardDialogFormValues, boardDialogFormSchema } from '../boards-utils';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 
 export const BoardDialogForm = () => {
+    const router = useRouter();
+
     const formContext = useForm<BoardDialogFormValues>({
         resolver: zodResolver(boardDialogFormSchema),
         defaultValues: {
@@ -20,9 +23,24 @@ export const BoardDialogForm = () => {
         },
     });
 
-    const handleSubmit = useCallback(() => {
-        console.log('submit');
-    }, []);
+    const handleSubmit = useCallback(
+        async (formValues: BoardDialogFormValues) => {
+            return new Promise<void>(async (resolve, reject) => {
+                try {
+                    await fetch('/api/boards', {
+                        method: 'POST',
+                        body: JSON.stringify(formValues),
+                    });
+
+                    router.refresh();
+                    resolve();
+                } catch {
+                    reject();
+                }
+            }).catch(console.error);
+        },
+        [router]
+    );
 
     return (
         <FormProvider
