@@ -27,13 +27,14 @@ export const BoardDialogForm = () => {
         async (formValues: BoardDialogFormValues) => {
             return new Promise<void>(async (resolve, reject) => {
                 try {
-                    await fetch('/api/boards', {
+                    const response = await fetch('/api/boards', {
                         method: 'POST',
                         body: JSON.stringify(formValues),
                     });
 
-                    router.refresh();
-                    resolve();
+                    const jsonResponse = await response.json();
+
+                    router.push(`/boards/${jsonResponse.data.board.slug}`);
                 } catch {
                     reject();
                 }
