@@ -38,7 +38,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                     </div>
 
                     {onDelete && (
-                        <button>
+                        <button onClick={onDelete} type="button">
                             <Delete className="w-4 text-grey500" />
                         </button>
                     )}
