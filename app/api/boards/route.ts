@@ -45,6 +45,28 @@ export async function POST(request: NextRequest) {
             },
             slug: slugify(name),
         },
+        include: {
+            columns: true,
+        },
+    });
+
+    const firstBoardColumn = board.columns[0].id;
+
+    const firstTask = await prisma.task.create({
+        data: {
+            name: 'My first task',
+            description: 'This is my first task, I must complete it',
+            columnId: firstBoardColumn,
+            boardId: board.id,
+        },
+    });
+
+    await prisma.subtask.create({
+        data: {
+            done: false,
+            name: 'Do the work',
+            taskId: firstTask.id,
+        },
     });
 
     return Response.json({ status: 200, data: { board } });

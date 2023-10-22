@@ -53,12 +53,32 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
+model Subtask {
+    id     String  @id @default(auto()) @map("_id") @db.ObjectId
+    name   String
+    done   Boolean
+    Task   Task?   @relation(fields: [taskId], references: [id])
+    taskId String? @db.ObjectId
+}
+
+model Task {
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+    columnId    String      @db.ObjectId
+    Column      BoardColumn @relation(fields: [columnId], references: [id])
+    subtasks    Subtask[]
+    boardId     String      @db.ObjectId
+    Board       Board       @relation(fields: [boardId], references: [id])
+}
+
 model BoardColumn {
-    id      String  @id @default(auto()) @map("_id") @db.ObjectId
-    name    String  @unique
-    color   String  @unique
-    Board   Board?  @relation(fields: [boardId], references: [id])
-    boardId String? @db.ObjectId
+    id      String @id @default(auto()) @map("_id") @db.ObjectId
+    name    String @unique
+    color   String @unique
+    Board   Board? @relation(fields: [boardId], references: [id])
+    boardId String @db.ObjectId
+    Task    Task[]
 }
 
 model Board {
@@ -69,4 +89,5 @@ model Board {
 
     userId String @db.ObjectId
     user   User   @relation(fields: [userId], references: [id])
+    Task   Task[]
 }

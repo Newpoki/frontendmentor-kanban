@@ -1,5 +1,6 @@
+import { BoardResponse } from '@/app/api/board/route';
 import { Header } from '@/app/header';
-import { PrismaClient } from '@prisma/client';
+import { notFound } from 'next/navigation';
 
 type Props = {
     children: React.ReactNode;
@@ -8,19 +9,16 @@ type Props = {
     };
 };
 
-const prisma = new PrismaClient();
-
 const fetchBoard = async (params: Props['params']) => {
-    const board = prisma.board.findFirst({
-        where: {
-            slug: params['board-slug'],
-        },
-        include: {
-            columns: true,
-        },
-    });
+    const board = await fetch(`http://localhost:3000/api/board?slug=${params['board-slug']}`);
 
-    return board;
+    if (!board.ok) {
+        notFound();
+    }
+
+    const response = (await board.json()) as BoardResponse;
+
+    return response.data.board;
 };
 
 export default async function BoardLayout({ children, params }: Props) {
@@ -28,7 +26,7 @@ export default async function BoardLayout({ children, params }: Props) {
 
     return (
         <div className="flex flex-1 flex-col">
-            <Header boardName={board.name} />
+            <Header boardName={board?.name} />
 
             <div className="flex flex-1 flex-col overflow-x-auto px-4 py-6">{children}</div>
         </div>
