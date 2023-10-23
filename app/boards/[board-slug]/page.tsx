@@ -6,6 +6,9 @@ type Props = {
     params: {
         'board-slug': string;
     };
+    searchParams: {
+        taskId?: string;
+    };
 };
 
 const fetchBoard = async (params: Props['params']) => {
@@ -20,7 +23,7 @@ const fetchBoard = async (params: Props['params']) => {
     return response.data.board;
 };
 
-export default async function Board({ params }: Props) {
+export default async function Board({ params, searchParams }: Props) {
     const board = await fetchBoard(params);
 
     return (
@@ -40,7 +43,10 @@ export default async function Board({ params }: Props) {
                             {column.tasks.map((task) => {
                                 return (
                                     <li key={task.id}>
-                                        <BoardTaskCard task={task} />
+                                        <BoardTaskCard
+                                            boardTask={task}
+                                            searchParams={searchParams}
+                                        />
                                     </li>
                                 );
                             })}
